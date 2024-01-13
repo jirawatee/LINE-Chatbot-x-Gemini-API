@@ -1,13 +1,15 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory  } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
 const textOnly = async (prompt) => {
+  // For text-only input, use the gemini-pro model
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
   const result = await model.generateContent(prompt);
   return result.response.text();
 };
 
 const multimodal = async (imageBinary) => {
+  // For text-and-image input (multimodal), use the gemini-pro-vision model
   const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
   const prompt = "Please help describe this picture.";
   const mimeType = "image/png";
@@ -22,12 +24,32 @@ const multimodal = async (imageBinary) => {
     }
   ];
 
-  const result = await model.generateContent([prompt, ...imageParts]);
+  const safetySettings = [
+    {
+      category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+      threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+      threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+      threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+      threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+    },
+  ];
+
+  const result = await model.generateContent([prompt, ...imageParts], safetySettings);
   const text = result.response.text();
   return text;
 };
 
 const chat = async (prompt) => {
+  // For text-only input, use the gemini-pro model
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
   const chat = model.startChat({
     history: [
@@ -46,7 +68,7 @@ const chat = async (prompt) => {
       {
         role: "model",
         parts: "Currently, there are Messaging API, LIFF, LINE Login, LINE Beacon, LINE Notify, LINE Pay, and LINE MINI App that can be used in Thailand.",
-      },
+      }
     ]
   });
 
