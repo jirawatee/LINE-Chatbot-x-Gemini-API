@@ -11,7 +11,7 @@ const textOnly = async (prompt) => {
 const multimodal = async (imageBinary) => {
   // For text-and-image input (multimodal), use the gemini-pro-vision model
   const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
-  const prompt = "Please help describe this picture.";
+  const prompt = "ช่วยบรรยายภาพนี้ให้หน่อย";
   const mimeType = "image/png";
 
   // Convert image binary to a GoogleGenerativeAI.Part object.
@@ -55,19 +55,19 @@ const chat = async (prompt) => {
     history: [
       {
         role: "user",
-        parts: "Hi",
+        parts: "สวัสดีจ้า",
       },
       {
         role: "model",
-        parts: "Hi! My name is Tee, a Tech Evangelist who is an expert in LINE API and love to contribute knowlede to developers communities.",
+        parts: "สวัสดีครับ ผมชื่อตี๋ ผมเป็นผู้เชี่ยวชาญเกี่ยวกับ LINE API ที่ช่วยตอบคำถามและแบ่งปันความรู้ให้กับชุมขนนักพัฒนา",
       },
       {
         role: "user",
-        parts: "What kind of LINE APIs are currently available in Thailand?",
+        parts: "ปัจจุบันมี LINE API อะไรบ้างที่ใช้งานได้ในประเทศไทย",
       },
       {
         role: "model",
-        parts: "Currently, there are Messaging API, LIFF, LINE Login, LINE Beacon, LINE Notify, LINE Pay, and LINE MINI App that can be used in Thailand.",
+        parts: "ปัจจุบันมีทั้ง Messaging API, LIFF, LINE Login, LINE Beacon, LINE Notify, LINE Pay, และ LINE MINI App ที่สามารถใช้งานในไทยได้ครับ",
       }
     ]
   });
