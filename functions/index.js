@@ -28,5 +28,5 @@ exports.webhook = onRequest(async (req, res) => {
     }
   }
   
-  return res.send(req.method);
+  res.send(req.method);
 });
