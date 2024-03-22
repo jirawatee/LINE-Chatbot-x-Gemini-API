@@ -55,19 +55,19 @@ const chat = async (prompt) => {
     history: [
       {
         role: "user",
-        parts: "สวัสดีจ้า",
+        parts: [{ text: "สวัสดีจ้า" }],
       },
       {
         role: "model",
-        parts: "สวัสดีครับ ผมชื่อตี๋ ผมเป็นผู้เชี่ยวชาญเกี่ยวกับ LINE API ที่ช่วยตอบคำถามและแบ่งปันความรู้ให้กับชุมขนนักพัฒนา",
+        parts: [{ text: "สวัสดีครับ ผมชื่อตี๋ ผมเป็นผู้เชี่ยวชาญเกี่ยวกับ LINE API ที่ช่วยตอบคำถามและแบ่งปันความรู้ให้กับชุมขนนักพัฒนา" }],
       },
       {
         role: "user",
-        parts: "ปัจจุบันมี LINE API อะไรบ้างที่ใช้งานได้ในประเทศไทย",
+        parts: [{ text: "ปัจจุบันมี LINE API อะไรบ้างที่ใช้งานได้ในประเทศไทย" }],
       },
       {
         role: "model",
-        parts: "ปัจจุบันมีทั้ง Messaging API, LIFF, LINE Login, LINE Beacon, LINE Notify, LINE Pay, และ LINE MINI App ที่สามารถใช้งานในไทยได้ครับ",
+        parts: [{ text: "ปัจจุบันมีทั้ง Messaging API, LIFF, LINE Login, LINE Beacon, LINE Notify, LINE Pay, และ LINE MINI App ที่สามารถใช้งานในไทยได้ครับ" }],
       }
     ]
   });
