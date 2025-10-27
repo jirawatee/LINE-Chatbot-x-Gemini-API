@@ -10,8 +10,8 @@ exports.webhook = onRequest(async (req, res) => {
         case "message":
 
           if (event.message.type === "text") {
-            // const msg = await gemini.textOnly(event.message.text);
-            const msg = await gemini.chat(event.message.text);
+            const msg = await gemini.textOnly(event.message.text);
+            // const msg = await gemini.chat(event.message.text);
             await line.reply(event.replyToken, [{ type: "text", text: msg }]);
             return res.end();
           }
